@@ -3,11 +3,13 @@ from email.parser import BytesParser
 from logbook import Logger
 
 from maildump.db import add_message
+## For replacement: uses deprecated smtpd
 from maildump.vendor import smtpd
 
 log = Logger(__name__)
 
 
+## For replacement: uses deprecated smtpd.SMTPServer
 class SMTPServer(smtpd.SMTPServer):
     def __init__(self, listener, handler):
         super().__init__(listener, None)

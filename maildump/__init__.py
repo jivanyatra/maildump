@@ -4,6 +4,7 @@ from gevent.pywsgi import WSGIServer
 from logbook import Logger
 
 from maildump.db import connect, create_tables, disconnect
+## For replacement: uses SMTPServer (from deprecated smtpd)
 from maildump.smtp import SMTPServer, smtp_handler
 from maildump.web import app
 
@@ -19,6 +20,7 @@ def start(http_host, http_port, smtp_host, smtp_port, db_path=None):
     stopper = http_server.close
     # SMTP server
     log.notice(f'Starting smtp server on {smtp_host}:{smtp_port}')
+    ## For replacement: uses SMTPServer (from deprecated smtpd)
     SMTPServer((smtp_host, smtp_port), smtp_handler)
     gevent.spawn(asyncore.loop)
     # Database
