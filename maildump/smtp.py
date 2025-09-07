@@ -3,7 +3,6 @@ from email.parser import BytesParser
 from logbook import Logger
 
 from maildump.db import add_message
-## For replacement: uses deprecated smtpd
 from aiosmtpd.controller import Controller
 import asyncio
 
