@@ -1,5 +1,3 @@
-import asyncore
-import gevent
 from gevent.pywsgi import WSGIServer
 from logbook import Logger
 

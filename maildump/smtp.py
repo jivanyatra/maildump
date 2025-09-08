@@ -4,7 +4,6 @@ from logbook import Logger
 
 from maildump.db import add_message
 from aiosmtpd.controller import Controller
-import asyncio
 
 log = Logger(__name__)
 
