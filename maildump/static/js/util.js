@@ -1,10 +1,16 @@
 import Handlebars from 'handlebars';
 import moment from 'moment';
+import messageTemplate from '../../templates/message.hbs';
+import messageMetadataTemplate from '../../templates/message-metadata.hbs';
 
 // Templating
 (function($, global) {
     'use strict';
-    var templates = null;
+    // Use imported templates directly (already compiled by transformer)
+    var templates = {
+        'message': messageTemplate,
+        'message-metadata': messageMetadataTemplate
+    };
 
     Handlebars.registerHelper('join', function(context, opts) {
         return context.join(', ');
@@ -15,24 +21,13 @@ import moment from 'moment';
         return ts.format(opts.hash.format || 'YYYY-MM-DD HH:mm:ss');
     });
 
+
+    // No need to load templates from DOM anymore
     function loadTemplates() {
-        if(!$.isReady) {
-            console.error('Tried loading templates before DOMReady');
-            console.trace();
-            return false;
-        }
-        templates = {};
-        $('script.template').each(function() {
-            var $this = $(this);
-            templates[$this.data('id')] = Handlebars.compile($this.html().trim());
-        }).remove();
         return true;
     }
 
     global.renderTemplate = function renderTemplate(name, context) {
-        if(templates === null && !loadTemplates()) {
-            return 'Cannot use templates before DOMReady. ';
-        }
         var tplFunc = templates[name] || function() {
             console.error('Template not found: ' + name);
             console.trace();

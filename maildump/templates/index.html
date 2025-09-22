@@ -5,7 +5,7 @@
     <link rel="shortcut icon" type="image/png" href="../static/images/icon_16x16.png">
     <title>MailDump</title>
     <link rel="stylesheet" type="text/css" href="../static/css/maildump.scss">
-    <script type="text/javascript" src="../static/js/maildump.js"></script>
+    <script type="module" src="../static/js/maildump.js"></script>
 </head>
 <body class="loading-message-list">
     <header class="top">
@@ -81,49 +81,8 @@
 
     <!-- templates, dialogs, etc. -->
 
-    {% raw %}
-    <script class="template" data-id="message" type="text/x-handlebars-template">
-        <tr data-message-id="{{ id }}">
-            <td>{{ sender }}</td>
-            <td>{{ join recipients.to }}</td>
-            <td>{{ subject }}</td>
-            <td>{{ date created_at }}</td>
-        </tr>
-    </script>
-
-    <script class="template" data-id="message-metadata" type="text/x-handlebars-template">
-        <dt class="created_at">Received</dt>
-        <dd class="created_at">{{ date created_at }}</dd>
-        <dt class="from">From</dt>
-        <dd class="from">{{ sender }}</dd>
-        <dt class="to">To</dt>
-        <dd class="to">{{ join recipients.to }}</dd>
-        {{# if recipients.cc.length }}
-        <dt class="cc">CC</dt>
-        <dd class="cc">{{ join recipients.cc }}</dd>
-        {{/if}}
-        {{# if recipients.bcc.length }}
-        <dt class="bcc">BCC</dt>
-        <dd class="bcc">{{ join recipients.bcc }}</dd>
-        {{/if}}
-        {{# if subject }}
-        <dt class="subject">Subject</dt>
-        <dd class="subject">{{ subject }}</dd>
-        {{/if}}
-        {{# if attachments.length }}
-        <dt class="attachments">Attachments</dt>
-        <dd class="attachments">
-            <ul>
-                {{# each attachments }}
-                <li>
-                    <a href="{{ href }}">{{ filename }}</a>
-                </li>
-                {{/each}}
-            </ul>
-        </dd>
-        {{/if}}
-    </script>
-    {% endraw %}
+    <!-- Handlebars templates moved to external files for Parcel v2 build -->
+    <!-- See: maildump/templates/message.hbs and maildump/templates/message-metadata.hbs -->
 
     <div class="overlay">
         <div class="modal disconnected">

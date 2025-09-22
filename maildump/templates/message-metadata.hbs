@@ -1,0 +1,30 @@
+<dt class="created_at">Received</dt>
+<dd class="created_at">{{ date created_at }}</dd>
+<dt class="from">From</dt>
+<dd class="from">{{ sender }}</dd>
+<dt class="to">To</dt>
+<dd class="to">{{ join recipients.to }}</dd>
+{{# if recipients.cc.length }}
+<dt class="cc">CC</dt>
+<dd class="cc">{{ join recipients.cc }}</dd>
+{{/if}}
+{{# if recipients.bcc.length }}
+<dt class="bcc">BCC</dt>
+<dd class="bcc">{{ join recipients.bcc }}</dd>
+{{/if}}
+{{# if subject }}
+<dt class="subject">Subject</dt>
+<dd class="subject">{{ subject }}</dd>
+{{/if}}
+{{# if attachments.length }}
+<dt class="attachments">Attachments</dt>
+<dd class="attachments">
+    <ul>
+        {{# each attachments }}
+        <li>
+            <a href="{{ href }}">{{ filename }}</a>
+        </li>
+        {{/each}}
+    </ul>
+</dd>
+{{/if}}
